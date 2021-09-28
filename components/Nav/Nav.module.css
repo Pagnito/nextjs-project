@@ -4,25 +4,22 @@
   position: fixed;
   top:0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .logo {
   font-family: "Caramel";
   font-size: 40px;
 }
-.burgerMenu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 20px;
-  margin-right: 30px;
-  cursor: pointer;
-}
+
 .burgerMenuBar {
   height: 7px;
   width: 40px;
   border-radius: 10px;
   background: black;
 }
+.checkBoxForButton {
+  display: none;
+}
+
+
