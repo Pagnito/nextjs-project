@@ -32,16 +32,27 @@ export default function Home() {
         </div>
         <div className={styles.homeStripeScrollHiderWrapper}>
           <div className={[styles.homeStripe, styles.stripeTwo].join(' ')}>
-            <div className={styles.shopIntro}></div>
+            <div className={styles.shopIntro}>
+            <ItemCardOne width="100%" height="400px" hoverImage="/images/item-5.1.png" image="/images/item-5.0.png" />
+              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-6.1.png" image="/images/item-6.0.png" />
+              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-7.1.png" image="/images/item-7.0.png" />
+              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-8.1.png" image="/images/item-8.0.png" />
+              <div className={styles.shopIntrosSopButton}>Shop Now!</div>
+            </div>
           </div>
         </div>
         <div className={styles.homeStripeScrollHiderWrapper}>
           <div className={[styles.homeStripe, styles.stripeThree].join(' ')}>
-            <div className={styles.shopIntro}></div>
+            <div className={styles.shopIntro}>
+            <ItemCardOne width="100%" height="400px" hoverImage="/images/item-9.1.png" image="/images/item-9.0.png" />
+              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-10.1.png" image="/images/item-10.0.png" />
+              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-11.1.png" image="/images/item-11.0.png" />
+              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-12.1.png" image="/images/item-12.0.png" />
+            </div>
           </div>
         </div>
       </div>
-      <div className={styles.footer}></div>
+      {/* <div className={styles.footer}></div> */}
     </>
   )
 }
