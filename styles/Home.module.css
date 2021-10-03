@@ -3,8 +3,8 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
-  margin-top: 80px;
-  height: calc(100vh - 80px);
+  margin-top: 70px;
+  height: calc(100vh - 70px);
   padding-right: 20px;
   padding-bottom: 20px;
   box-sizing: border-box;
@@ -46,16 +46,16 @@
   background-position: top, center;
   width: 100%;
   overflow-y: scroll;
-  padding: 15px;
+  /* padding: 15px; */
   box-sizing: border-box;
   margin-left: 15px
 }
 .shopIntro {
   min-height: 100vh;
   width: 100%;
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255,255,255,1);
   margin-top: calc(100vh - 80px);
-  padding: 15px;
+  /* padding: 5px; */
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -81,9 +81,4 @@
 }
 .stripeThree {
   background-image: url('/images/fashion-2.jpg');
-}
-.footer {
-  background-color: rgba(0,0,0,.8);
-  height: 40vh;
-  width: 100%;
 }

@@ -1,0 +1,72 @@
+{
+  "featured_collections": ["urban_swagger", "the_one_that_got_away", "conqueror"],
+  "urban_swagger": {
+    "name": "urban_swagger",
+    "item_one":{
+      "price": "19.99",
+      "image": "/images/item-8.0.png",
+      "hoverImage": "/images/item-8.1.png"
+    },
+    "item_two":{
+      "price": "24.99",
+      "image": "/images/item-9.0.png",
+      "hoverImage": "/images/item-9.1.png"
+    },
+    "item_three":{
+      "price": "129.99",
+      "image": "/images/item-10.0.png",
+      "hoverImage": "/images/item-10.1.png"
+    },
+    "item_four":{
+      "price": "99.99",
+      "image": "/images/item-11.0.png",
+      "hoverImage": "/images/item-11.1.png"
+    }
+  },
+  "the_one_that_got_away": {
+    "name": "the_one_that_got_away",
+    "item_one":{
+      "price": "19.99",
+      "image": "/images/item-5.0.png",
+      "hoverImage": "/images/item-5.1.png"
+    },
+    "item_two":{
+      "price": "24.99",
+      "image": "/images/item-6.0.png",
+      "hoverImage": "/images/item-6.1.png"
+    },
+    "item_three":{
+      "price": "129.99",
+      "image": "/images/item-7.0.png",
+      "hoverImage": "/images/item-7.1.png"
+    },
+    "item_four":{
+      "price": "99.99",
+      "image": "/images/item-8.0.png",
+      "hoverImage": "/images/item-8.1.png"
+    }
+  },
+  "conqueror": {
+    "name": "conqueror",
+    "item_one":{
+      "price": "19.99",
+      "image": "/images/item-1.0.png",
+      "hoverImage": "/images/item-1.1.png"
+    },
+    "item_two":{
+      "price": "24.99",
+      "image": "/images/item-2.0.png",
+      "hoverImage": "/images/item-2.1.png"
+    },
+    "item_three":{
+      "price": "129.99",
+      "image": "/images/item-3.0.png",
+      "hoverImage": "/images/item-3.1.png"
+    },
+    "item_four":{
+      "price": "99.99",
+      "image": "/images/item-4.0.png",
+      "hoverImage": "/images/item-4.1.png"
+    }
+  }
+}

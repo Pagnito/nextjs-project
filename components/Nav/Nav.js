@@ -10,7 +10,9 @@ function Nav() {
 
       <div className={styles.logo}>YouOnly</div>
       <input id="checkBoxForButton" className={styles.checkBoxForButton} type="checkbox"></input>
-      <div className="drawerMenu"></div>
+      <div className="drawerMenu">
+    
+      </div>
       <label htmlFor="checkBoxForButton" className="burgerMenu">
         <div className={styles.burgerMenuBar}></div>
         <div className={styles.burgerMenuBar}></div>
@@ -30,12 +32,13 @@ function Nav() {
       .drawerMenu {
         height: 100vh;
         width: 100%;
-        background-color: lightblue;
+        background-color: white;
         position: absolute;
         top: 0;
         transform: translateX(100%);
-        transition: all .3s ease-in-out;
+        transition: all .5s ease-in-out;
         z-index:9;
+        display: flex;
       }
         #checkBoxForButton:checked  + .drawerMenu {
           transform: translateX(0%);

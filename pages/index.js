@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ItemCardOne from '../components/ItemCardOne/ItemCardOne';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 function carouselArrow() {
@@ -12,47 +13,43 @@ function carouselArrow() {
     </div>
   )
 }
+
 export default function Home() {
+  useEffect(() => {
+    fetch('http://localhost:3000/api/collection/featured')
+      .then(res => res.json())
+      .then(data => {
+        setCollection(data);
+      })
+  }, [])
+  let [featuredCollections, setCollection] = useState([]);
 
-  return (
-    <>
-      <div className={styles.homeContainer}>
-        {carouselArrow()}
-        <div className={styles.homeStripeScrollHiderWrapper}>
-          <div className={[styles.homeStripe, styles.stripeOne].join(' ')}>
-            <div className={styles.shopIntro}>
-              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-1.1.png" image="/images/item-1.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-2.1.png" image="/images/item-2.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-3.1.png" image="/images/item-3.0.png" />
-              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-4.1.png" image="/images/item-4.0.png" />
-              <div className={styles.shopIntrosSopButton}>Shop Now!</div>
-
-            </div>
-          </div>
-        </div>
-        <div className={styles.homeStripeScrollHiderWrapper}>
-          <div className={[styles.homeStripe, styles.stripeTwo].join(' ')}>
-            <div className={styles.shopIntro}>
-            <ItemCardOne width="100%" height="400px" hoverImage="/images/item-5.1.png" image="/images/item-5.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-6.1.png" image="/images/item-6.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-7.1.png" image="/images/item-7.0.png" />
-              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-8.1.png" image="/images/item-8.0.png" />
-              <div className={styles.shopIntrosSopButton}>Shop Now!</div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.homeStripeScrollHiderWrapper}>
+  let renderCollectionCards = () => {
+    return featuredCollections.map(collection => {
+      console.log(collection.name)
+      return (
+        <div key={collection.name} className={styles.homeStripeScrollHiderWrapper}>
           <div className={[styles.homeStripe, styles.stripeThree].join(' ')}>
             <div className={styles.shopIntro}>
-            <ItemCardOne width="100%" height="400px" hoverImage="/images/item-9.1.png" image="/images/item-9.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-10.1.png" image="/images/item-10.0.png" />
-              <ItemCardOne width="50%" height="180px" hoverImage="/images/item-11.1.png" image="/images/item-11.0.png" />
-              <ItemCardOne width="100%" height="400px" hoverImage="/images/item-12.1.png" image="/images/item-12.0.png" />
+              <ItemCardOne key={1} width="100%" height="400px" image={collection.item_one.hoverImage} hoverImage={collection.item_one.image} data={collection} />
+              <ItemCardOne key={2} width="50%" height="180px" image={collection.item_two.hoverImage} hoverImage={collection.item_two.image} data={collection} />
+              <ItemCardOne key={3} width="50%" height="180px" image={collection.item_three.hoverImage} hoverImage={collection.item_three.image} data={collection} />
+              <ItemCardOne key={4} width="100%" height="400px" image={collection.item_four.hoverImage} hoverImage={collection.item_four.image} data={collection} />
+              <Link key={5} href={"/catalog/" + collection.name}><div className={styles.shopIntrosSopButton}>Shop Now!</div></Link>
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className={styles.footer}></div> */}
-    </>
-  )
+      )
+    })
+  }
+    return (
+      <>
+        <div className={styles.homeContainer}>
+          {/* {carouselArrow()} */}
+          {renderCollectionCards()}
+        </div>
+      </>
+    )
+
+  
 }

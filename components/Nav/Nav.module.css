@@ -1,11 +1,12 @@
 .navContainer {
-  height: 80px;
+  height: 70px;
   width: 100%;
   position: fixed;
   top:0px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 .logo {
   font-family: "Caramel";
