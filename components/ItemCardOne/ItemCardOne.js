@@ -1,8 +1,11 @@
+import Image from 'next/image';
 
 function ItemCardOne(props) {
   return (
     <div className="itemCardOneContainer">
-      <div className="itemCardOneImageContainer"></div>
+      <div className="itemCardOneImageContainer">
+        <Image layout="fill" src={} />
+      </div>
       <div className="itemCardOneInfo">
         <h3> Hard Leather Jacket </h3>
 

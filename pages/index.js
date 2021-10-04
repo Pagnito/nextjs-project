@@ -26,10 +26,12 @@ export default function Home() {
 
   let renderCollectionCards = () => {
     return featuredCollections.map(collection => {
-      console.log(collection.name)
+      console.log(collection.banner)
       return (
         <div key={collection.name} className={styles.homeStripeScrollHiderWrapper}>
-          <div className={[styles.homeStripe, styles.stripeThree].join(' ')}>
+          <div className={[styles.homeStripe].join(' ')}>
+            <Image 
+             layout='fill' src={collection.banner} className={styles.featuredStripeImage} />
             <div className={styles.shopIntro}>
               <ItemCardOne key={1} width="100%" height="400px" image={collection.item_one.hoverImage} hoverImage={collection.item_one.image} data={collection} />
               <ItemCardOne key={2} width="50%" height="180px" image={collection.item_two.hoverImage} hoverImage={collection.item_two.image} data={collection} />
@@ -42,14 +44,14 @@ export default function Home() {
       )
     })
   }
-    return (
-      <>
-        <div className={styles.homeContainer}>
-          {/* {carouselArrow()} */}
-          {renderCollectionCards()}
-        </div>
-      </>
-    )
+  return (
+    <>
+      <div className={styles.homeContainer}>
+        {/* {carouselArrow()} */}
+        {renderCollectionCards()}
+      </div>
+    </>
+  )
 
-  
+
 }
