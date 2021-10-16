@@ -1,22 +1,34 @@
 import styles from './Nav.module.css';
 import { createRef } from 'react/cjs/react.production.min';
-
+import Image from 'next/image';
 function Nav() {
 
   return (
-    <div className={styles.navContainer}>
+    <>
+      <div className={styles.mobileNavContainer}>
+        <div className={styles.logo}>BeWhole</div>
+        <input id="checkBoxForButton" className={styles.checkBoxForButton} type="checkbox"></input>
+        <div className="drawerMenu"></div>
+        <label htmlFor="checkBoxForButton" className="burgerMenu">
+          <div className={styles.burgerMenuBar}></div>
+          <div className={styles.burgerMenuBar}></div>
+        </label>
 
-      <div className={styles.navPlaceholder}></div>
-
-      <div className={styles.logo}>YouOnly</div>
-      <input id="checkBoxForButton" className={styles.checkBoxForButton} type="checkbox"></input>
-      <div className="drawerMenu">
-    
       </div>
-      <label htmlFor="checkBoxForButton" className="burgerMenu">
-        <div className={styles.burgerMenuBar}></div>
-        <div className={styles.burgerMenuBar}></div>
-      </label>
+      <div className={styles.desktopNavContainer}>
+
+        <div className={styles.navPlaceholder}></div>
+
+        <div className={styles.logo}>BeWhole</div>
+
+        <div className={styles.desktopIcons}>
+          <Image height="23" width="23" src="/images/search.png" />
+          <Image height="25" width="25" src="/images/profile.png" />
+          <Image height="25" width="25" src="/images/heart.png" />
+          <Image height="25" width="25" src="/images/shopping-cart.png" />
+        </div>
+      
+      </div>
       <style jsx>{`
       .burgerMenu {
         display: flex;
@@ -46,8 +58,9 @@ function Nav() {
         .burgerMenu:hover + .drawerMenu {
           background-color: pink;
         }
+      
       `}</style>
-    </div>
+    </>
   );
 }
 

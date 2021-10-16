@@ -7,6 +7,7 @@ export default function handler(req, res) {
     let featured = collections.featured_collections.map(collName => {
       return collections[collName];
     })
+    console.log(featured)
     res.status(200).json(featured);
   } else {
     res.status(200).json(collections[req.query.name]);

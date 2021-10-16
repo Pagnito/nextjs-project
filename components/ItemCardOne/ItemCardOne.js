@@ -1,13 +1,14 @@
 import Image from 'next/image';
 
 function ItemCardOne(props) {
+  console.log(props.data.image)
   return (
     <div className="itemCardOneContainer">
       <div className="itemCardOneImageContainer">
-        <Image layout="fill" src={} />
+        <Image objectPosition="top" objectFit="cover" layout="fill" src={props.data.image} />
       </div>
       <div className="itemCardOneInfo">
-        <h3> Hard Leather Jacket </h3>
+        <h3>{props.data.name}</h3>
 
         <h4>$50.00</h4>
       </div>
@@ -19,20 +20,13 @@ function ItemCardOne(props) {
           padding: 10px;
           border-radius: 3px;
         }
-        .itemCardOneImageContainer {
-          background-image: url(${props.image});
-          transition: background-image .2s ease-in-out;
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat      
-        }
+   
         .itemCardOneImageContainer {
           width: 100%;
-          height: ${props.height}
+          height: ${props.height};
+          position: relative;
         }
-        .itemCardOneContainer:hover {
-          background-color:  rgba(0,0,0,.1);
-        }
+      
         .itemCardOneContainer:hover .itemCardOneImageContainer {
           background-image: url(${props.hoverImage})
         }

@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ItemCardOne from '../components/ItemCardOne/ItemCardOne';
+import FeaturedCollectionSectionOne from '../components/FeaturedCollectionSectionOne/FeaturedCollectionSectionOne';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import HalfScreenAdCard from '../components/HalfScreenAdCard/HalfScreenAdCard';
 
 function carouselArrow() {
   return (
@@ -16,9 +18,10 @@ function carouselArrow() {
 
 export default function Home() {
   useEffect(() => {
-    fetch('http://localhost:3000/api/collection/featured')
+    fetch('http://localhost:4000/api/collection/featured')
       .then(res => res.json())
       .then(data => {
+
         setCollection(data);
       })
   }, [])
@@ -26,29 +29,46 @@ export default function Home() {
 
   let renderCollectionCards = () => {
     return featuredCollections.map(collection => {
-      console.log(collection.banner)
       return (
-        <div key={collection.name} className={styles.homeStripeScrollHiderWrapper}>
-          <div className={[styles.homeStripe].join(' ')}>
-            <Image 
-             layout='fill' src={collection.banner} className={styles.featuredStripeImage} />
-            <div className={styles.shopIntro}>
-              <ItemCardOne key={1} width="100%" height="400px" image={collection.item_one.hoverImage} hoverImage={collection.item_one.image} data={collection} />
-              <ItemCardOne key={2} width="50%" height="180px" image={collection.item_two.hoverImage} hoverImage={collection.item_two.image} data={collection} />
-              <ItemCardOne key={3} width="50%" height="180px" image={collection.item_three.hoverImage} hoverImage={collection.item_three.image} data={collection} />
-              <ItemCardOne key={4} width="100%" height="400px" image={collection.item_four.hoverImage} hoverImage={collection.item_four.image} data={collection} />
-              <Link key={5} href={"/catalog/" + collection.name}><div className={styles.shopIntrosSopButton}>Shop Now!</div></Link>
-            </div>
-          </div>
+        // on hover pull a random item out of collection
+        <div key={collection.name} className={[styles.homeStripe].join(' ')}>
+          <Image
+            layout='fill' objectPosition="top" src={collection.banner} className={styles.featuredStripeImage} />
         </div>
+
       )
     })
   }
   return (
     <>
       <div className={styles.homeContainer}>
+        <div className={styles.landingCarousel}>
+          {renderCollectionCards()}
+        </div>
+        <div className={styles.halfSceenAdsContainer}>
+          <HalfScreenAdCard discount="60" collection={{ name: "Men's Collection" }} color="#FF2626" />
+          <HalfScreenAdCard discount="40" collection={{ name: "Women's Collection" }} color="#BD1616" />
+        </div>
+        <FeaturedCollectionSectionOne>
+          {featuredCollections.length > 0 ? featuredCollections[0].items.map((item, ind) => {
+            return (
+              <ItemCardOne key={item.name} data={item} width="33%" height="400px" />
+            )
+          }) : ''}
+        </FeaturedCollectionSectionOne>
         {/* {carouselArrow()} */}
-        {renderCollectionCards()}
+
+
+        <div className={styles.parralaxOne}>
+
+        </div>
+        <div className={styles.halfSceenAdsContainer}>
+          <HalfScreenAdCard discount="60" collection={{ name: "Men's Collection" }} color="#414141" />
+          <HalfScreenAdCard discount="40" collection={{ name: "Women's Collection" }} color="black" />
+        </div>
+        <div className={styles.parralaxTwo}>
+
+        </div>
       </div>
     </>
   )

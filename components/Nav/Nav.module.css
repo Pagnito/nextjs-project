@@ -1,4 +1,15 @@
-.navContainer {
+.mobileNavContainer {
+  height: 70px;
+  width: 100%;
+  position: relative;
+  top:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  display: none;
+}
+.desktopNavContainer {
   height: 70px;
   width: 100%;
   position: relative;
@@ -9,8 +20,12 @@
   background-color: white;
 }
 .logo {
-  font-family: "Caramel";
+  font-family: "Bebas Neue";
   font-size: 40px;
+  width: calc(90% - 180px);
+  display: flex;
+  justify-content: center;
+  color:  #BD1616
 }
 
 .burgerMenuBar {
@@ -22,8 +37,26 @@
 .checkBoxForButton {
   display: none;
 }
-
+.navPlaceholder {
+  width:10%;
+}
 .drawerMenu {
   z-index: 100;
 }
+.desktopIcons {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 160px;
+  margin-right: 20px;
+}
 
+@media (max-width: 750px) {
+  .mobileNavContainer {
+    display: flex;
+  }
+  .desktopNavContainer {
+    display: none;
+  }
+}
