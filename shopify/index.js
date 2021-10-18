@@ -29,12 +29,19 @@ export async function getAllProducts() {
     products(first: 250) {
       edges {
         node {
-          title
-          handle
           id
+          title
           priceRange {
             minVariantPrice {
               amount
+            }
+          }
+          images(first: 5) {
+            edges {
+              node {
+                originalSrc
+                altText
+              }
             }
           }
         }
@@ -43,9 +50,9 @@ export async function getAllProducts() {
   }`
 
   const response = await ShopifyData(query)
+  const slugs  = response.data.products.edges ? response.data.products.edges : []
+  console.log(slugs[0].node.images.edges[0])
 
-  const slugs = response.data.products.edges ? response.data.products.edges : []
-  console.log(slugs[0].node.priceRange)
   return slugs
 }
 
