@@ -1,12 +1,11 @@
 import styles from './Nav.module.css';
-import { createRef } from 'react/cjs/react.production.min';
 import Image from 'next/image';
 function Nav() {
 
   return (
     <>
       <div className={styles.mobileNavContainer}>
-        <div className={styles.logo}>BeWhole</div>
+        <div className={styles.logo}>arkeytype</div>
         <input id="checkBoxForButton" className={styles.checkBoxForButton} type="checkbox"></input>
         <div className="drawerMenu"></div>
         <label htmlFor="checkBoxForButton" className="burgerMenu">
@@ -19,7 +18,7 @@ function Nav() {
 
         <div className={styles.navPlaceholder}></div>
 
-        <div className={styles.logo}>BeWhole</div>
+        <div className={styles.logo}>ARKEYTYPE</div>
 
         <div className={styles.desktopIcons}>
           <Image height="23" width="23" src="/images/search.png" />
@@ -29,6 +28,7 @@ function Nav() {
         </div>
       
       </div>
+      <div className={styles.redStripe}></div>
       <style jsx>{`
       .burgerMenu {
         display: flex;

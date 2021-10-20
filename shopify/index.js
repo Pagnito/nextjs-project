@@ -54,49 +54,80 @@ export async function getAllProducts() {
   return slugs
 }
 
-export async function getCollection(collection) {
-  let query = `
-  {
-    collectionByHandle(handle: ${collection}) {
-        id
-        title
-        handle
-        products(first: 50, sortKey: BEST_SELLING) {
+export async function getCollectionImages([]) {
+  return new Promise(async(resolve, reject) => {
+    let query = `{
+      collections(first: 3, query:"title:'Energy' OR title:'Time' OR title:'Be Whole'") {
           edges {
+              cursor
               node {
                   id
-                  title
-                  vendor
-                  availableForSale
-                  images(first: 1) {
-                      edges {
-                          node {
-                              id
-                              transformedSrc
-                              width
-                              height
-                              altText
-                          }
-                      }
-                  }
-                  priceRange {
-                      minVariantPrice {
-                          amount
-                          currencyCode
-                      }
-                      maxVariantPrice {
-                          amount
-                          currencyCode
-                      }
+                  handle
+                  image {
+                    originalSrc
                   }
               }
           }
       }
-    }
+  }`
+    const response = await ShopifyData(query)
+    const slugs = response.data.collections.edges ? response.data.collections.edges : []
+    resolve(slugs)
+  })
+  
 }
-`
-  const response = await ShopifyData(query);
-  return response;
+
+export async function getCollection(collection) {
+  return new Promise(async (resolve, reject) => {
+    let query = `
+    {
+      collectionByHandle(handle: "${collection}") {
+          id
+          title
+          handle
+          image {
+            originalSrc
+          }
+          products(first: 50, sortKey: BEST_SELLING) {
+            edges {
+                node {
+                    id
+                    title
+                    vendor
+                    availableForSale
+                    images(first: 1) {
+                        edges {
+                            node {
+                                id
+                                transformedSrc
+                                width
+                                height
+                                altText
+                            }
+                        }
+                    }
+                    priceRange {
+                        minVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                        maxVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                    }
+                }
+            }
+        }
+      }
+      
+  }
+  `
+    const response = await ShopifyData(query);
+    const data = response.data.collectionByHandle ? response.data.collectionByHandle : {}
+    resolve(data);
+  })
+ 
 }
 export async function getProduct(handle) {
   let query = `
@@ -122,7 +153,7 @@ export async function getProduct(handle) {
     }
 }
 `
-const response = await ShopifyData(query);
-return response;
+  const response = await ShopifyData(query);
+  return response;
 }
 getCollection()

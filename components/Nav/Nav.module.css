@@ -51,7 +51,11 @@
   width: 160px;
   margin-right: 20px;
 }
-
+.redStripe {
+  height:10px;
+  width: 100%;
+  background-color: #BD1615;
+}
 @media (max-width: 750px) {
   .mobileNavContainer {
     display: flex;

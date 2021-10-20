@@ -1,10 +1,13 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import ItemCardOne from '../components/ItemCardOne/ItemCardOne';
-import FeaturedCollectionSectionOne from '../components/FeaturedCollectionSectionOne/FeaturedCollectionSectionOne';
+import { getAllProducts, getCollection, getCollectionImages } from '../shopify';
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import wrapper from '../store';
+import FeaturedCollectionSectionOne from '../components/FeaturedCollectionSectionOne/FeaturedCollectionSectionOne';
 import HalfScreenAdCard from '../components/HalfScreenAdCard/HalfScreenAdCard';
+import ItemCardOne from '../components/ItemCardOne/ItemCardOne';
+import TripleImageBanner from '../components/TripleImageBanner/TripleImageBanner';
 
 function carouselArrow() {
   return (
@@ -16,46 +19,26 @@ function carouselArrow() {
   )
 }
 
-export default function Home() {
+function Home(props) {
   useEffect(() => {
-    fetch('http://localhost:4000/api/collection/featured')
-      .then(res => res.json())
-      .then(data => {
+  }, [props.products])
 
-        setCollection(data);
-      })
-  }, [])
-  let [featuredCollections, setCollection] = useState([]);
-
-  let renderCollectionCards = () => {
-    return featuredCollections.map(collection => {
-      return (
-        // on hover pull a random item out of collection
-        <div key={collection.name} className={[styles.homeStripe].join(' ')}>
-          <Image
-          priority={true}
-            layout='fill' objectPosition="top" src={collection.banner} className={styles.featuredStripeImage} />
-        </div>
-
-      )
-    })
-  }
+  let topProducts = props.products.features.topProducts.products.edges;
+  let featuredCollections = props.products.features.tripleBannerFeatures
   return (
     <>
       <div className={styles.homeContainer}>
-        <div className={styles.landingCarousel}>
-          {renderCollectionCards()}
-        </div>
+        <TripleImageBanner featuredCollections={featuredCollections} />
         <div className={styles.halfSceenAdsContainer}>
           <HalfScreenAdCard discount="60" collection={{ name: "Men's Collection" }} color="#FF2626" />
           <HalfScreenAdCard discount="40" collection={{ name: "Women's Collection" }} color="#BD1616" />
         </div>
         <FeaturedCollectionSectionOne>
-          {featuredCollections.length > 0 ? featuredCollections[0].items.map((item, ind) => {
+          {topProducts.map((item, ind) => {
             return (
-              <ItemCardOne key={item.name} data={item} width="33%" height="400px" />
+              <ItemCardOne key={item.node.id} data={item} width="33%" height="400px" />
             )
-          }) : ''}
+          })}
         </FeaturedCollectionSectionOne>
      
 
@@ -74,14 +57,36 @@ export default function Home() {
     </>
   )
 }
+function stateToProps(state) {
+  return {
+    products: state.products
+  }
+}
+export default connect(stateToProps, null)(Home)
 
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  // let collections = await getCollectionImages("energy", "time", "be-whole")
+  // store.dispatch({type: 'TRIPLE_BANNER_FEATURES', payload: collections})
+  // console.log(collections)
+  try {
+    let pr = await Promise.all([getCollectionImages("energy", "time", "be-whole"), getCollection("be-whole")]);
+    let collections = pr[0];
+    let topProducts = pr[1];
+    store.dispatch({ type: 'TRIPLE_BANNER_FEATURES', payload: collections })
+    store.dispatch({ type: 'TOP_PRODUCTS', payload: topProducts })
+  } catch (err) {
+    console.log(err)
+  }
+
+
+});
 // export async function getStaticProps() {
-//   const res = await fetch('https://.../posts')
-//   const posts = await res.json()
+//   let products = await getAllProducts();
+
 
 //   return {
 //     props: {
-//       posts,
+//       products
 //     },
 //     // Next.js will attempt to re-generate the page:
 //     // - When a request comes in
