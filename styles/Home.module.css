@@ -1,5 +1,5 @@
 .homeContainer {
- 
+  margin-top: 70px;
 }
 /* .landingCarousel {
   width: 100%;
@@ -39,18 +39,10 @@
 .halfSceenAdsContainer {
   display: flex;
 }
-.parralaxOne {
-  background-image: url('/images/parrallax-mens.jpg');
-  height: 100vh;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 .parralaxTwo {
   background-image: url('/images/parrallax-womens.jpg');
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;

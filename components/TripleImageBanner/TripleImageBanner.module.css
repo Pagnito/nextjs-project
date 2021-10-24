@@ -3,8 +3,9 @@
   display: flex;
   align-items: stretch;
   justify-content: space-around;
+  position: relative;
   /* margin-top: 70px; */
-  height: calc(100vh - 90px);
+  height: calc(100vh - 80px);
   /* padding-right: 15px; */
   /* padding-bottom: 15px; */
   box-sizing: border-box;
@@ -47,4 +48,12 @@
   border-color: white;
   background-color: white;
 
+}
+
+.redStripe {
+  position: absolute;
+  height:10px;
+  width: 100%;
+  background-color: #BD1615;
+  top: 0;
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllProducts, getCollection, getCollectionImages } from '../shopify';
+import { getAllProducts, getFeaturedCollection, getCollectionImages } from '../shopify';
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
@@ -8,6 +8,7 @@ import FeaturedCollectionSectionOne from '../components/FeaturedCollectionSectio
 import HalfScreenAdCard from '../components/HalfScreenAdCard/HalfScreenAdCard';
 import ItemCardOne from '../components/ItemCardOne/ItemCardOne';
 import TripleImageBanner from '../components/TripleImageBanner/TripleImageBanner';
+import ParralaxOne from '../components/ParallaxOne/ParallaxOne';
 
 function carouselArrow() {
   return (
@@ -36,20 +37,18 @@ function Home(props) {
         <FeaturedCollectionSectionOne>
           {topProducts.map((item, ind) => {
             return (
-              <ItemCardOne key={item.node.id} data={item} width="33%" height="400px" />
+              <ItemCardOne key={item.node.id} data={item} width="25" />
             )
           })}
         </FeaturedCollectionSectionOne>
      
 
 
-        <div className={styles.parralaxOne}>
-
-        </div>
-        <div className={styles.halfSceenAdsContainer}>
+       <ParralaxOne title="ALL ABOUT US" desc="asdasdklasdkjasdbaksldba asdknasdkljsand alskdnaskd askdnasdklnoh;ln lnasdlkn asdlknasdlkn asdlk;nasdkln"/>
+        {/* <div className={styles.halfSceenAdsContainer}>
           <HalfScreenAdCard discount="60" collection={{ name: "Men's Collection" }} color="#414141" />
           <HalfScreenAdCard discount="40" collection={{ name: "Women's Collection" }} color="black" />
-        </div>
+        </div> */}
         <div className={styles.parralaxTwo}>
 
         </div>
@@ -69,7 +68,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // store.dispatch({type: 'TRIPLE_BANNER_FEATURES', payload: collections})
   // console.log(collections)
   try {
-    let pr = await Promise.all([getCollectionImages("energy", "time", "be-whole"), getCollection("be-whole")]);
+    let pr = await Promise.all([getCollectionImages("energy", "time", "be-whole"), getFeaturedCollection("be-whole")]);
     let collections = pr[0];
     let topProducts = pr[1];
     store.dispatch({ type: 'TRIPLE_BANNER_FEATURES', payload: collections })

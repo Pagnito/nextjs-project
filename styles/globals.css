@@ -5,15 +5,42 @@ body {
   margin: 0;
   font-family: 'Jost';
   font-weight: 500;
-  overflow-x: hidden;
+  overflow: hidden;
+  
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
 * {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:#BD1615;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: white
+}
+body {
+  scrollbar-width: 10px;
+  /* Track */
+  scrollbar-track-color:#BD1615;
+  scrollbar-color: white;
+  scrollbar-highlight-color: white;
+  
+
+}

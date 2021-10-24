@@ -16,10 +16,13 @@ function TripleImageBanner({ featuredCollections }) {
     })
   }
   return (
-  <div className={styles.tripleImageBannerContainer}>
-    {renderCollectionImages()}
-    <div className={styles.tripleImageBannerButton}>Shop Now!</div>
-  </div>)
+    <div className={styles.tripleImageBannerContainer}>
+
+      {renderCollectionImages()}
+      <div className={styles.tripleImageBannerButton}>Shop Now!</div>
+      <div className={styles.redStripe}></div>
+
+    </div>)
 
 }
 

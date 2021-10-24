@@ -6,14 +6,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  /* background-color: white; */
+  background: rgba(0,0,0,0);
   display: none;
 }
 .desktopNavContainer {
   height: 70px;
   width: 100%;
-  position: relative;
+  position: fixed;
   top:0px;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,11 +53,7 @@
   width: 160px;
   margin-right: 20px;
 }
-.redStripe {
-  height:10px;
-  width: 100%;
-  background-color: #BD1615;
-}
+
 @media (max-width: 750px) {
   .mobileNavContainer {
     display: flex;

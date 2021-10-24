@@ -1,7 +1,11 @@
 import styles from './Nav.module.css';
 import Image from 'next/image';
+import SearchBar from '../SearchBar/SearchBar';
+import {useState} from 'react';
+import DrawerCart from '../DrawerCart/DrawerCart';
 function Nav() {
-
+  let [searchBarVisibility, setSearchVisibility] = useState('none');
+  let [drawerCartVisibility, setDrawerCartVisibility] = useState('none');
   return (
     <>
       <div className={styles.mobileNavContainer}>
@@ -15,20 +19,20 @@ function Nav() {
 
       </div>
       <div className={styles.desktopNavContainer}>
-
+        <DrawerCart hideDrawerCart={setDrawerCartVisibility} display={drawerCartVisibility}/>
+        <SearchBar hideSearchBar={setSearchVisibility} display={searchBarVisibility}/>
         <div className={styles.navPlaceholder}></div>
 
         <div className={styles.logo}>ARKEYTYPE</div>
 
         <div className={styles.desktopIcons}>
-          <Image height="23" width="23" src="/images/search.png" />
+          <Image onClick={() => setSearchVisibility('block')} height="23" width="23" src="/images/search.png" />
           <Image height="25" width="25" src="/images/profile.png" />
           <Image height="25" width="25" src="/images/heart.png" />
-          <Image height="25" width="25" src="/images/shopping-cart.png" />
+          <Image onClick={() => setDrawerCartVisibility('block')} height="25" width="25" src="/images/shopping-cart.png" />
         </div>
-      
       </div>
-      <div className={styles.redStripe}></div>
+      
       <style jsx>{`
       .burgerMenu {
         display: flex;

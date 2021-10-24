@@ -1,0 +1,67 @@
+.drawerCartContainer {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  right: 0px;
+  top:0px;
+  z-index: 12;
+  /* background-color:rgba(255, 230, 230, .5); */
+  /* background-color: rgba(189, 22, 22, .2); */
+  font-family: "Jost";
+  /* font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; */
+  /* display: none; */
+  overflow: hidden;
+}
+.drawerCartBackground {
+  opacity: 0;
+  background-color:rgba(0,0,0,.4);
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s ease-out;
+  /* backdrop-filter: blur(3px); */
+}
+.drawerCart {
+  width: 32%;
+  height: 100vh;
+  position: absolute;
+  right: 0px;
+  top:0px;
+  background: white;
+  box-shadow: -5px 0px 10px 0px rgba(0,0,0,.2);
+  padding: 15px;
+  transition: transform .3s ease-out;
+  transform: translateX(100%);
+}
+
+.drawerCartTitle {
+  font-size: 18px;
+  margin: 10px 0px 0px 5px;
+}
+.drawerCartX {
+  position: absolute;
+  z-index: 11;
+  top: 35px;
+  right: 25px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+
+}
+
+
+.drawerCartXTopBar {
+  transform: rotateZ(-40deg) translateY(-6px);
+  transform-origin: right top;
+  height: 3px;
+  width: 20px;
+  background-color: gray;
+  border-radius: 1px;
+}
+.drawerCartXBottomBar {
+  transform: rotateZ(40deg) translateY(6px);
+  transform-origin: right bottom;
+  height: 3px;
+  width: 20px;
+  background-color: gray;
+  border-radius: 1px;
+}

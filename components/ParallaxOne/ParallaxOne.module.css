@@ -1,0 +1,37 @@
+.parralaxOne {
+  background-image: url('/images/parrallax-mens.jpg');
+  height: 90vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parallaxOneBox {
+ color: white;
+ width: 50%;
+}
+.parallaxOneButton {
+  color: white;
+  font-weight: bold;
+  padding: 9px 14px 9px 14px;
+  background-color: #BD1615;
+  border: 1px solid #BD1615;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+.parallaxOneButton:hover {
+  color:#BD1615;
+  background-color: white;
+  border: 1px solid white;
+}
+.parallaxOneStatement {
+  font-style: italic;
+  color: #BD1615;
+}
+.parallaxOneShortDescription {
+  letter-spacing: 2px;
+}
