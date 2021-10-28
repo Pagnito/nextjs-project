@@ -1,0 +1,7 @@
+.productPageImageCarousel{
+  height: 500px;
+  width: 500px;
+  position: relative;
+  border: 2px solid black;
+}
+

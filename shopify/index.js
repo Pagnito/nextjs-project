@@ -150,16 +150,33 @@ export async function getFeaturedCollection(collection) {
  
 }
 export async function getProduct(handle) {
+  console.log('mandle', handle)
   let query = `
   {
-    productByHandle(handle: ${handle}) {
+    productByHandle(handle: "${handle}") {
         id
         title
         description
-        variants(first: 5) {
+        images(first: 5) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+        variants(first: 100) {
             edges {
                 cursor
                 node {
+                    image {
+                      originalSrc
+                      altText
+                    }
+                    selectedOptions {
+                      name
+                      value
+                    }
                     id
                     title
                     quantityAvailable
@@ -172,9 +189,14 @@ export async function getProduct(handle) {
         }
     }
 }
-`
+` 
+try {
   const response = await ShopifyData(query);
   return response;
+} catch(err) {
+  console.log('ProductByHandleError', err)
+}
+ 
 }
 
 export async function createCheckout(id, quantity) {
@@ -289,7 +311,9 @@ export async function recursiveCatalog(cursor = '', initialRequest = true) {
 
       return data.concat(await recursiveCatalog(cursor));
     } else {
+      console.log(data)
       return data;
     }
   }
 }
+getProduct('Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzY4MDk1NTg5NDE3NDE=')

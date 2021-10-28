@@ -27,7 +27,8 @@
   width: calc(90% - 180px);
   display: flex;
   justify-content: center;
-  color:  #BD1616
+  color:  #BD1616;
+  cursor: pointer;
 }
 
 .burgerMenuBar {

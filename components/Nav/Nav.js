@@ -1,7 +1,8 @@
 import styles from './Nav.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import SearchBar from '../SearchBar/SearchBar';
-import {useState} from 'react';
+import { useState } from 'react';
 import DrawerCart from '../DrawerCart/DrawerCart';
 function Nav() {
   let [searchBarVisibility, setSearchVisibility] = useState('none');
@@ -9,7 +10,10 @@ function Nav() {
   return (
     <>
       <div className={styles.mobileNavContainer}>
-        <div className={styles.logo}>arkeytype</div>
+        <Link href="/">
+          <div className={styles.logo}>arkeytype</div>
+        </Link>
+
         <input id="checkBoxForButton" className={styles.checkBoxForButton} type="checkbox"></input>
         <div className="drawerMenu"></div>
         <label htmlFor="checkBoxForButton" className="burgerMenu">
@@ -19,12 +23,12 @@ function Nav() {
 
       </div>
       <div className={styles.desktopNavContainer}>
-        <DrawerCart hideDrawerCart={setDrawerCartVisibility} display={drawerCartVisibility}/>
-        <SearchBar hideSearchBar={setSearchVisibility} display={searchBarVisibility}/>
+        <DrawerCart hideDrawerCart={setDrawerCartVisibility} display={drawerCartVisibility} />
+        <SearchBar hideSearchBar={setSearchVisibility} display={searchBarVisibility} />
         <div className={styles.navPlaceholder}></div>
-
-        <div className={styles.logo}>ARKEYTYPE</div>
-
+        <Link href="/">
+          <div className={styles.logo}>ARKEYTYPE</div>
+        </Link>
         <div className={styles.desktopIcons}>
           <Image onClick={() => setSearchVisibility('block')} height="23" width="23" src="/images/search.png" />
           <Image height="25" width="25" src="/images/profile.png" />
@@ -32,7 +36,7 @@ function Nav() {
           <Image onClick={() => setDrawerCartVisibility('block')} height="25" width="25" src="/images/shopping-cart.png" />
         </div>
       </div>
-      
+
       <style jsx>{`
       .burgerMenu {
         display: flex;

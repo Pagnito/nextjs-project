@@ -71,8 +71,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     let pr = await Promise.all([getCollectionImages("energy", "time", "be-whole"), getFeaturedCollection("be-whole")]);
     let collections = pr[0];
     let topProducts = pr[1];
-    store.dispatch({ type: 'TRIPLE_BANNER_FEATURES', payload: collections })
-    store.dispatch({ type: 'TOP_PRODUCTS', payload: topProducts })
+    store.dispatch({ type: 'HOME_TRIPLE_BANNER_FEATURES', payload: collections })
+    store.dispatch({ type: 'HOME_TOP_PRODUCTS', payload: topProducts })
   } catch (err) {
     console.log(err)
   }
@@ -111,3 +111,18 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 //   // on-demand if the path doesn't exist.
 //   return { paths, fallback: 'blocking' }
 // }
+
+// const addRevalidateAndRedux = async (props, reduxStaticProps, revalidateSeconds = 50) => {
+//   const getStaticProps = await reduxStaticProps(props);
+//   getStaticProps.revalidate = revalidateSeconds;
+//   return getStaticProps;
+// };
+
+// export const getStaticProps = async (props) =>
+//   addRevalidateAndRedux (
+//     props,
+//     wrapper.getStaticProps(async ({ store }) => {
+//       const { id } = props.params;
+//       //...
+//     })
+//   );

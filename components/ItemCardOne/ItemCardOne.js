@@ -24,12 +24,12 @@ function ItemCardOne(props) {
           <div className="itemCardOneButtonContainer">
             <Image objectPosition="center" layout="fill" src="/images/like.png" />
           </div>
-          <div className="itemCardOneButtonContainer">
+          {/* <div className="itemCardOneButtonContainer">
             <Image objectPosition="center" layout="fill" src="/images/eye.png" />
           </div>
           <div className="itemCardOneButtonContainer">
             <Image objectPosition="center" layout="fill" src="/images/cart-bag.png" />
-          </div>
+          </div> */}
         </div>
 
         <style jsx>{`
@@ -54,7 +54,8 @@ function ItemCardOne(props) {
           width: 100%;
           padding-bottom: 100%;
           position: relative;
-          transition: all .3s ease-in-out
+          transition: all .3s ease-in-out;
+          border: 2px solid #BD1615;
         }
 
         .itemCardOneImageStyleSquare {
@@ -83,9 +84,9 @@ function ItemCardOne(props) {
         .itemCardOneImageStyleTriangle {
           clip-path: polygon(0 6%, 0% 100%, 100% 100%);
           position: absolute;
-          bottom: -1px;
-          left: -1px;
-          background: white;
+          bottom: 0px;
+          left: 0px;
+          background: #BD1615;
           height: 30px;
           width: 30px;
         }
@@ -96,13 +97,13 @@ function ItemCardOne(props) {
           flex-direction: column; 
           transition: all .5s ease-in-out .2s;
           opacity: 0;
-          right: 25px;
+          right: 35px;
         }
         .itemCardOneButtonContainer {
           width: 30px;
           height: 30px;
           position: relative;
-          margin-top: 10px;
+          margin-top: 7px;
           
         }
       
