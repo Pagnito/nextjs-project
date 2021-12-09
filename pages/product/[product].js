@@ -4,40 +4,37 @@ import ProductPageImageCarousel from '../../components/ProductPageImageCarousel/
 import ProductPageItemInfo from '../../components/ProductPageItemInfo/ProductPageItemInfo';
 import { recursiveCatalog, getProduct } from '../../shopify';
 import wrapper from '../../store';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 function ProductPage(props) {
-  let uniqueByColor = [];
-  let colors = [];
-  let sizes = [];
-  let uniqueBySize = [];
   useEffect(() => {
     document.body.firstChild.firstChild.scrollTo(0,0);
   }, []);
 
-  function filterData(variants) { 
-    variants.map((variant, i) => {
-      if (colors.indexOf(variant.node.selectedOptions[0].value) < 0) {
-        colors.push(variant.node.selectedOptions[0].value);
-        uniqueByColor.push(variant.node);
-      }
-      if (sizes.indexOf(variant.node.selectedOptions[1].value) < 0) {
-        sizes.push(variant.node.selectedOptions[1].value);
-        uniqueBySize.push(variant.node)
-      } 
+  function filterDataSizesPerColor(variants) {
+    let sizesByColor = {};
+    variants.map(variant1 => {
+      variants.forEach(variant2 => {
+        if(variant1.node.selectedOptions[0].value===variant2.node.selectedOptions[0].value) {
+          let color = variant1.node.selectedOptions[0].value;
+          if(!sizesByColor.hasOwnProperty(color)) {
+            sizesByColor[color] = {};
+          }
+          let size = variant2.node.selectedOptions[1].value;
+          if(variant1.node.selectedOptions[0].value===variant2.node.selectedOptions[0].value && !sizesByColor[color][size]){
+            sizesByColor[color][size] = variant2;
+          }
+        }
+      })
     });
-    return {
-      uniqueByColor,
-      uniqueBySize
-    }
+    return sizesByColor;
   }
-
-  let filtered = filterData(props.product.product.data.productByHandle.variants.edges);
+  let sizesByColor = useMemo(() => filterDataSizesPerColor(props.product.product.data.productByHandle.variants.edges));  
 
   return (
     <div className={styles.productPageContainer}>
-      <ProductPageImageCarousel colors={colors} selectVariant={props.selectVariant} variantsByColor={filtered.uniqueByColor} />
-      <ProductPageItemInfo variantsBySize={filtered.uniqueBySize} variantsByColor={filtered.uniqueByColor} selectVariant={props.selectVariant} />
+      <ProductPageImageCarousel variants={sizesByColor}selectVariant={props.selectVariant} />
+      <ProductPageItemInfo variants={sizesByColor} selectVariant={props.selectVariant} />
     </div>
   );
 }

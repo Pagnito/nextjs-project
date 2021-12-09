@@ -10,7 +10,9 @@ export default (state = init, action) => {
     case 'PDP_SELECTED_VARIANT':
       let selectedVariant = state.pdp.product.data.productByHandle.variants.edges.find(({node}) => {
         return node.selectedOptions[0].value == action.payload.color && node.selectedOptions[1].value == action.payload.size
-      }).node;
+      })
+      // console.log('dfuk', state.pdp.product.data.productByHandle.variants.edges.length)
+      selectedVariant = selectedVariant.node;
       selectedVariant.index = action.payload.colorIndex;
       return {
         ...state,
